@@ -23,6 +23,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: "User already exists" };
   }
 
+  console.log({ name, email });
+
   await db.user.create({
     data: {
       name,

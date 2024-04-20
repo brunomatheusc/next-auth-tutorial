@@ -43,18 +43,20 @@ export const {
     },
   },
   callbacks: {
-    /*
-    async signIn({ user }) {
-      console.log({ userSignIn: user });
-      if (!user?.id) return false;
+    async signIn({ user, account }) {
+      if (account?.provider !== "credentials") return true;
+
+      if (!user || !user.id) return false;
 
       const existingUser = await getUserById(user.id);
 
-      if (!existingUser || !existingUser.emailVerified) return false;
+      // Prevent sign in without email verification
+      if (!existingUser?.emailVerified) return false;
+
+      // TODO: Add 2FA check
       
       return true;
     },
-    */
 
     async session({ token, session }) {
       console.log({ sessionToken: token });

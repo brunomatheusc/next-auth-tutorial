@@ -1,1 +1,1 @@
-export const generateExpires = () => new Date(new Date().getTime() + 3600 * 1000);
+export const generateExpires = (hours: number = 1) => new Date(new Date().getTime() + hours * 3600 * 1000);
